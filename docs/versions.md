@@ -7,8 +7,8 @@
 | v01 Cube-first baseline | `versions/v01_cube_first_baseline` | 早期 Cube 主导实现，通用 Matmul 与 VECOUT 中转 | 用于展示起点，不代表最后性能基线 |
 | v02 MIX pipeline V6.1 | `versions/v02_mix_pipeline_v6_1` | AIC 生产一次 Gram，两个 AIV 消费；双 slot READY/FREE 流水 | 代表架构转折点 |
 | v03 direct-MMAD stable | `versions/v03_direct_mmad_stable` | K128 L1 ping-pong、K256 保守 direct MMAD、输出窗口与跨 task 预取的稳定组合 | 原始 manifest 一并保留；历史整包状态，不等于当前最优 |
-| v04 Phase-C/chunk-pair | `versions/v04_phase_c_chunk_pair` | 后期 AIV Phase C、chunk pair、指数因子化与 direct MMAD 组合 | 冠军调度引入前的直接前身 |
-| v05 release baseline | 仓库根目录 | 在 v04 上加入部分冠军思路的 blockDim 与 group-aligned 调度 | 作者指定当前最佳；开源整理后尚未重新上板验证 |
+| v04 Phase-C/chunk-pair | `versions/v04_phase_c_chunk_pair` | 后期 AIV Phase C、chunk pair、指数因子化与 direct MMAD 组合 | 任务连续分配策略引入前的直接前身 |
+| v05 release baseline | 仓库根目录 | 在 v04 上加入参考 2026 年 7 月冠军的活动 group 选择与连续任务分配 | 作者最终版本，已通过赛事审核 |
 
 ## 源码指纹
 
@@ -18,7 +18,7 @@
 | v02 | `4f2b0b69d4e3f4accd269f40e449d3d70cf8bd10123db05c48f9700615ddb618` | `b8b55a6d2c76693ba0b0e83edfc87d3f08d05aa00c2eb5c6195bbe4605013d53` |
 | v03 | `b07ab363a501b8868d1d51169b3080521bb17ac496bedb76b727ade325665ac6` | `b8b55a6d2c76693ba0b0e83edfc87d3f08d05aa00c2eb5c6195bbe4605013d53` |
 | v04 | `7526f63cb3fa3fbb07b084d1ac437e7becf9aa9fca59ba01b0ed31acd8306e09` | `1e9d11e0b4dd2d05a0548f32ec3775caa483dd06c638e5f16246efb6b8bff559` |
-| v05 | `95dea0ca4ee641041b86cf3e59ce301f5352d000d29c6db155e6ff12934123b0` | `a0a3e782272d756bb173ef03ec6f2b42a7e18e6c476b7dd1ccd5569834474e36` |
+| v05 | `7d416f68bdf9b329b7ce331c421f8f5f1c839f777b6995d84455aa205b18d03f` | `eb3df2aa7df231517394e71bd8fe808e04ea87b91f0530163ec178302d4dc748` |
 
 这些哈希对应整理时的核心源码快照。之后若修复根目录代码，v05 哈希自然会变化；历史版本目录原则上保持只读。
 

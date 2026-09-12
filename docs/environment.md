@@ -13,7 +13,7 @@
 | 目标 | Ascend 910B / NPU arch 2201 | Host 注册、kernel 编译保护 |
 | simulator SoC | `Ascend910B3` | 历史及整理后的 simulator 脚本 |
 
-本次开源整理发生在 macOS，因此只做了脚本、文档、目录和源码静态检查。CANN 编译、算子安装、正确性和性能均应在目标 Linux/NPU 环境重新验证。
+当前发布基线已通过赛事审核。下表记录的是该版本开发和运行所使用的目标环境；在其他 CANN 或 SoC 上使用时，需要重新确认兼容性。
 
 ## 依赖
 

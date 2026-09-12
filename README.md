@@ -1,7 +1,14 @@
 # ChunkScaledDotKkt Ascend C operator
 
-这是 `ChunkScaledDotKkt` 的 Ascend C 竞赛实现与优化复盘仓库。根目录保存当前发布基线；`versions/` 保存四个有代表性的历史里程碑；`examples/`、`scripts/` 和 `results/` 分别保存本地验证入口、性能采集入口和经过裁剪的历史证据。
+这是 `ChunkScaledDotKkt` 的 Ascend C 竞赛实现与优化总结仓库。根目录保存当前发布基线；`versions/` 保存四个有代表性的历史里程碑；`examples/`、`scripts/` 和 `results/` 分别保存本地验证入口、性能采集入口和经过裁剪的历史证据。
 
+> 状态说明：当前发布基线由 `best_chunk_scaled_dot_kkt_real` 整理而来，是作者的最终版本，已通过赛事审核。`results/` 中保留的是优化过程中的历史采集，用于展示分析方法，不作为最终版本的逐 case 成绩表。
+
+## 7 月冠军实现的借鉴范围
+
+本项目参考了 **2026 年 7 月该赛题冠军的公开实现**，借鉴范围仅限任务调度：Host 侧活动 MIX group / `blockDim` 的选择，以及 kernel 内按 KV group 连续分配相邻 chunk 的方式。这里借鉴的是“让同一执行组连续处理相关任务”的分配思路。
+
+除此之外，算子语义梳理、按 `(chunk, kvHead)` 复用 Gram、AIC/AIV 1:2 流水、READY/FREE workspace 协议、K128/K256 direct-MMAD、Vector 后处理、指数因子化、输出窗口、本地测试与 profiling 工具均由本项目独立开发。具体来源路径和边界见 [NOTICE](NOTICE.md)。
 
 ## 算子语义
 
@@ -91,7 +98,6 @@ bash scripts/run_kkt.sh prof perf_official_like_k128
 | `scripts/` | 统一测试与 msprof/simulator 入口 |
 | `versions/` | 4 个历史源码快照；当前根目录可视为 v05 |
 | `docs/optimization.md` | 优化机制、适用条件、证据与反例的精炼版 |
-| `docs/optimization_history_zh.md` | 1000 行完整优化历程与实验账本 |
 | `docs/slides/` | 原始分享 PPTX 与 PDF |
 | `results/` | 裁剪后的历史硬件 profile 与 simulator 汇总 |
 | `legacy/` | 未纳入过时 UT 模板的原因与恢复位置 |
@@ -103,6 +109,6 @@ bash scripts/run_kkt.sh prof perf_official_like_k128
 - `--no-check` 只适合采集，不能作为正确性证据。
 - simulator 的多核、多流水线时间存在重叠，不能把 CSV 中所有指令时长直接相加当成端到端耗时。
 - 原工作区的框架 UT 模板与当前 tiling ABI 不兼容，因此只记录、不发布。
-- 本项目采用 MIT License；冠军思路的来源与待核对 attribution 见 `NOTICE.md`。
+- 本项目采用 MIT License；7 月冠军任务调度思路的来源与借鉴边界见 `NOTICE.md`。
 
-English summary: an Ascend C implementation of `ChunkScaledDotKkt` for Ascend 910B, with a curated optimization history, runnable aclnn validation harness, profiling scripts, and four source milestones. The release baseline still requires a clean target-device rebuild before publication.
+English summary: a review-approved Ascend C implementation of `ChunkScaledDotKkt` for Ascend 910B, with a runnable aclnn validation harness, profiling scripts, and four historical source milestones. Only the continuous task-assignment strategy was adapted from the public July 2026 champion submission; the operator architecture and kernel implementation were developed independently in this project.

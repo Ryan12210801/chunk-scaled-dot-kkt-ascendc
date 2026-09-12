@@ -60,11 +60,12 @@ __aicore__ inline int32_t MinI32(int32_t a, int32_t b)
     return a < b ? a : b;
 }
 
-// July-champion group-aligned schedule boundaries.  The Host-side champion
-// blockDim policy is retained separately; this predicate only decides whether
-// one MIX group should stay inside one KV group and walk a contiguous chunk
-// range.  Keep the scope deliberately narrow to the R=3/R=4 workloads that
-// motivated the champion's specialized schedules.
+// Continuous task-assignment idea adapted from the July 2026 champion
+// submission. This predicate only decides whether one MIX group stays inside
+// one KV group and walks a contiguous chunk range. All compute, buffering,
+// synchronization, and direct-MMAD paths remain this project's independent
+// implementation. Keep the borrowed scheduling scope narrow to the R=3/R=4
+// workloads for which it is selected by Host tiling.
 constexpr int64_t CHAMP_GROUP_ALIGNED_CORE_COUNT = 16;
 constexpr int64_t CHAMP_SMALL_TASK_MAX = 32;
 constexpr int64_t CHAMP_SHALLOW_MANUAL_TASK_MIN = 80;
@@ -94,16 +95,15 @@ __aicore__ inline bool UseChampionGroupAlignedSchedule(
         return false;
     }
 
-    // Champion generic GH=2 range: split each KV group independently among
-    // the active MIX groups instead of cyclically interleaving both groups.
+    // GH=2 continuity range: split each KV group independently among the
+    // active MIX groups instead of cyclically interleaving both groups.
     if (hg == 2 &&
         taskCount > CHAMP_SMALL_TASK_MAX &&
         taskCount <= CHAMP_MEDIUM_TASK_MAX) {
         return true;
     }
 
-    // These are the two fixed-16-core group-aligned shapes selected by the
-    // champion Host policy and already preserved in our current tiling.cpp.
+    // Fixed-16-group ranges selected by the Host task-assignment policy.
     if (blockDim != CHAMP_GROUP_ALIGNED_CORE_COUNT) {
         return false;
     }
@@ -310,7 +310,7 @@ public:
             static_cast<int64_t>(GetBlockIdx());
         const bool groupAligned =
             UseChampionGroupAlignedSchedule(tiling_);
-        // Outside the champion-derived group-aligned shapes, preserve the
+        // Outside the adapted group-aligned ranges, preserve this project's
         // validated R=3 head-major contiguous schedule exactly.
         const bool chunkLocal =
             !groupAligned && tiling_->numRepeat == 3;
