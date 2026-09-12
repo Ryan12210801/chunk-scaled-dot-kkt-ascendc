@@ -8,7 +8,7 @@
 
 本项目参考了 **2026 年 7 月该赛题冠军的公开实现**，借鉴范围仅限任务调度：Host 侧活动 MIX group / `blockDim` 的选择，以及 kernel 内按 KV group 连续分配相邻 chunk 的方式。这里借鉴的是“让同一执行组连续处理相关任务”的分配思路。
 
-除此之外，算子语义梳理、按 `(chunk, kvHead)` 复用 Gram、AIC/AIV 1:2 流水、READY/FREE workspace 协议、K128/K256 direct-MMAD、Vector 后处理、指数因子化、输出窗口、本地测试与 profiling 工具均由本项目独立开发。具体来源路径和边界见 [NOTICE](NOTICE.md)。
+除此之外，算子语义梳理、按 `(chunk, kvHead)` 复用 Gram、AIC/AIV 1:2 流水、READY/FREE workspace 协议、K128/K256 direct-MMAD、Vector 后处理、指数因子化、输出窗口、本地测试均由本项目独立开发。具体来源路径和边界见 [NOTICE](NOTICE.md)。
 
 ## 算子语义
 
