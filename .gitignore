@@ -1,0 +1,26 @@
+# Build and generated operator packages
+/build/
+/build_out/
+/examples/build/
+*.run
+*.o
+*.so
+
+# New test/profiling captures (curated historical samples are tracked)
+/results/test_runs/
+/results/profile_runs/
+/results/simulator_runs/
+
+# Profiler raw data can be hundreds of MB
+PROF_*/
+OPPROF_*/device_*/
+*.db
+*.dump
+trace*.json
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/

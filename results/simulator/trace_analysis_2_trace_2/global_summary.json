@@ -1,0 +1,26 @@
+{
+  "trace": "trace_2.json",
+  "displayTimeUnit": "ns",
+  "profilingType": "op",
+  "schemaVersion": 2,
+  "total_events": 948564,
+  "complete_events": 947064,
+  "phase_counts": {
+    "M": 1500,
+    "X": 947064
+  },
+  "global_start_us": 22.707001,
+  "global_end_us": 63.227002,
+  "global_span_us": 40.520001,
+  "logical_core_count": 20,
+  "process_count": 60,
+  "aic_process_count": 20,
+  "aiv_process_count": 40,
+  "useful_aic_count": 20,
+  "control_only_aic_count": 0,
+  "active_aiv_count": 40,
+  "inactive_aiv_count": 0,
+  "mmad_count": 314,
+  "total_transfer_bytes": 31851264,
+  "total_wait_dev_us_across_processes": 661.908001
+}

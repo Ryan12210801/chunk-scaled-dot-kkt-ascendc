@@ -1,0 +1,17 @@
+ChunkScaledDotKkt final retained source bundle
+
+op_host/
+  chunk_scaled_dot_kkt_def.cpp
+  chunk_scaled_dot_kkt_infershape.cpp
+  chunk_scaled_dot_kkt_tiling.cpp
+
+op_kernel/
+  chunk_scaled_dot_kkt.cpp
+  chunk_scaled_dot_kkt.h
+  chunk_scaled_dot_kkt_tiling_data.h
+  chunk_scaled_dot_kkt_tiling_key.h
+
+Notes:
+- Kernel header is the retained output-window4 + cross-task prefetch + no-div2 + full64 pair version.
+- Kernel entry is the matching packed direct-MMAD Async MIX 1:2 entry.
+- BareMix, pair-contiguous MTE3, and R=3 Hybrid experiments are excluded.

@@ -1,0 +1,48 @@
+2026-07-23 17:49:21 [INFO]  Op profiling analysis start.
+2026-07-23 17:49:21 [INFO]  Running device task: DeviceProf
+
+[ RUN      ] perf_high_reuse_h128_hg1
+  suite=performance T=4096 H=128 Hg=1 K=128 chunks=64 logicalTasks=64 warmup=1 repeat=1 output=128.0 MiB
+[INFO] <ProfData> Start profiling on device 0, kernel: ChunkScaledDotKkt_1f444be706a062fefb190a53c330768a_0_mix_aic
+[INFO] <WarmUp> Warm Up enabled. times:5
+  timing: device_total=4.908 ms device_avg=4908.460 us wall_avg=4981.824 us
+RESULT,perf_high_reuse_h128_hg1,performance,T=4096,H=128,Hg=1,K=128,chunks=64,tasks=64,warmup=1,repeat=1,device_avg_us=4908.460,wall_avg_us=4981.824
+[        OK ] perf_high_reuse_h128_hg1
+
+========================================
+Passed 1 / 1 selected cases
+========================================
+2026-07-23 17:49:26 [INFO]  Profiling running finished. All task success.
+2026-07-23 17:49:26 [INFO]  Start analyze kernel on device: device0, kernel: ChunkScaledDotKkt_1f444be706a062fefb190a53c330768a_0_mix_aic, name is: 0
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [PipeUtilization] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [ArithmeticUtilization] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [L2Cache] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [Memory] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [ResourceConflictRatio] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [MemoryL0] success.
+2026-07-23 17:49:26 [INFO]  Save profiling data with metric [MemoryUB] success.
+2026-07-23 17:49:26 [INFO]  Performance Summary Report:
+
+	1) aicore MTE1 bandwidth utilization lower than 80% when active.
+	2) aicore MTE2 bandwidth utilization lower than 80% when active.
+	3) aicore MTE3 bandwidth utilization lower than 80% when active.
+	4) aicore compute usage lower than 20%.
+	5) aivector MTE2 bandwidth utilization lower than 80% when active.
+	6) aivector MTE3 bandwidth utilization lower than 80% when active.
+	7) aivector compute usage lower than 20%.
+
+2026-07-23 17:49:26 [INFO]  Operator Basic Information:
+
+	Op Name: ChunkScaledDotKkt_1f444be706a062fefb190a53c330768a_0_mix_aic
+	Op Type: mix
+	Task Duration(us): 4217.640137
+	Block Dim: 20
+	Mix Block Dim: 20
+	Device Id: 0
+	Pid: 7341
+	Current Freq: 1800
+	Rated Freq: 1800
+
+2026-07-23 17:49:27 [INFO]  Profiling results saved in /mnt/workspace/contest/chunk_scaled_dot_kkt/records/prof/perf_high_reuse_h128_hg1_20260723_174921/OPPROF_20260723174921_HXGNUJNCHBMUFOOM
+2026-07-23 17:49:27 [INFO]  Profiling data parse finished.
+2026-07-23 17:49:27 [INFO]  Op profiling finish. Welcome to next use.
