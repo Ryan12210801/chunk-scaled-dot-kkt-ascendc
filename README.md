@@ -2,7 +2,6 @@
 
 这是 `ChunkScaledDotKkt` 的 Ascend C 竞赛实现与优化复盘仓库。根目录保存当前发布基线；`versions/` 保存四个有代表性的历史里程碑；`examples/`、`scripts/` 和 `results/` 分别保存本地验证入口、性能采集入口和经过裁剪的历史证据。
 
-> 状态说明：当前发布基线由原目录 `best_chunk_scaled_dot_kkt_real` 整理而来，是作者指定的当前最佳版本。本次开源整理在 macOS 上完成了静态检查，但没有重新连接 NPU 编译或复测；历史 profiler 数据也不是这一最终源码的复测成绩。发布后仍建议在目标机完成一次干净验证。
 
 ## 算子语义
 
