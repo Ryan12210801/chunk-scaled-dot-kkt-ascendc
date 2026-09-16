@@ -1,6 +1,6 @@
 # ChunkScaledDotKkt Ascend C operator
 
-这是 `ChunkScaledDotKkt` 的 Ascend C 竞赛实现与优化总结仓库。根目录保存当前发布基线；`versions/` 保存四个有代表性的历史里程碑；`examples/`、`scripts/` 和 `results/` 分别保存本地验证入口、性能采集入口和经过裁剪的历史证据。
+这是 `ChunkScaledDotKkt` 的 Ascend C 竞赛实现与优化总结仓库，该算子取得CANN天梯赛8月份月度冠军。根目录保存当前发布基线；`versions/` 保存四个有代表性的历史里程碑；`examples/`、`scripts/` 和 `results/` 分别保存本地验证入口、性能采集入口和经过裁剪的历史证据。
 
 > 状态说明：当前发布基线由 `best_chunk_scaled_dot_kkt_real` 整理而来，是作者的最终版本，已通过赛事审核。`results/` 中保留的是优化过程中的历史采集，用于展示分析方法，不作为最终版本的逐 case 成绩表。
 
